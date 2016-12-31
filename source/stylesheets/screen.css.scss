@@ -412,6 +412,8 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+    font-size: 1.15em;
+
     th,td {
       text-align: left;
       vertical-align: top;
@@ -452,6 +454,22 @@ html, body {
   p, li, dt, dd {
     line-height: 1.6;
     margin-top: 0;
+  }
+
+  p, li {
+    font-size: 1.3em;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  h3 {
+    font-size: 1.5em;
   }
 
   img {
