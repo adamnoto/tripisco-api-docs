@@ -1,20 +1,19 @@
-# Errors
+# Erratic responses
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+## List of erratic responses
 
-The Kittn API uses the following error codes:
+Erratic response have a unique code for each error type, and is provided with
+message given in English. You may want to substitute the message
+to your local language if appropriate.
 
+We will add support for Bahasa Indonesia in the future release.
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+code | meaning
+---- | -------
+INTERR | Type of error cannot be covered in detail by other error codes listed bellow; an internal error.
+ERRKEY | You send an invalid `Authorization` header upon which no agent can be found.
+INVCRED | The user's given email and password cannot be found.
+OUTFAIL | Logout action cannot be performed due to an internal error, please retry.
+NOANS | Search request yielded no results.
+WRGDATE | Wrong inputs on the date, eg. search date is yesterday/day in the past.
+MISPAR | Certain required parameter is missing from the request body.
