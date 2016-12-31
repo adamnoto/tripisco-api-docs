@@ -53,29 +53,6 @@ child_age_1 | Integer | Y | Age of the second children
 }
 ```
 
-> Response for asking clarifications
-
-```json
-{
-  "version": 1,
-  "response": {
-    "type": "HOTEL_ALTERNATIVE_LOCATIONS",
-    "data": [
-      {
-        "id": "0275996B-B8AA-46AE-B1CA-DD4690FFAF0D",
-        "city": "Kota",
-        "country": "India"
-      },
-      {
-        "id": "FE39D864-50E1-4CE4-84D4-D8FB1BB04801",
-        "city": "Kota",
-        "country": "Japan"
-      }
-    ]
-  }
-}
-```
-
 If the hotel search can be performed without further clarification, a JSON object
 with `response.type` key is set to `HOTEL_SEARCH_RESULTS`.
 
@@ -147,6 +124,8 @@ current_allotment | Integer | Number of free allotment
 See the body response in detail at the section for the detail request.
 
 ### Search returning various locations
+
+> Response asking location clarifications
 
 ```json
 {
