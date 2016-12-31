@@ -1,17 +1,23 @@
 # Tripisco API
 
 [Tripisco](https://tripisco.com) is a business-to-business booking where you could get commissions
-from each successful booking you made, uncancelled. This is the API documentation
-that will you to integrate and connect with our service.
+from each successful booking you made, uncancelled.
+
+This is the API documentation that will you to integrate and connect with our service.
+
+## Access Authorization
 
 All APIs served by Tripisco is protected behind an Authorization layer.
-The Authorization layer make use of each agent's own agent ID and server key,
-and then encoded in Base 64. If the agent ID is 'A000001' and the server key
-is 'TCO-Server-12345678', the Authorization key is generated as follow:
 
-1. Use basic format (`id:password`): `A000001:TCO-Server-12345678`.
-2. Encode in base64 strictly: `QTAwMDAwMTpUQ08tU2VydmVyLTEyMzQ1Njc4`.
-3. Embed the encoded id-password pair above in `Authorization` header in each request to the API: `Basic QTAwMDAwMTpUQ08tU2VydmVyLTEyMzQ1Njc4`.
+To get authorized, client will need to supply a basic authorization header
+for each API call. The value for the header is generated as follow:
+
+1. Make text in format `id:password`, for example: `A000001:TCO-Server-12345678`.
+2. Encode in strict base64: `QTAwMDAwMTpUQ08tU2VydmVyLTEyMzQ1Njc4`.
+3. Embed the encoded id-password pair above in the `Authorization` header: `Basic QTAwMDAwMTpUQ08tU2VydmVyLTEyMzQ1Njc4`.
+
+The `id` represents your agent's ID, and the password is your server key. Both
+can be obtained after you had registered with Tripisco.
 
 ## Response type
 

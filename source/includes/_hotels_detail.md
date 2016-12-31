@@ -19,9 +19,11 @@ hotel_id | String | Y | Hotel ID which detail is requested
 
 ### Response
 
+> Hotel detail response
+
 ```json
 {
-  "storage_id": "tsco88a_fa36ba5f-97eb-4f51-affb-a3b74fd5dfd3",
+  "storage_id": "tsco88a_fa36ba5f-abcdef",
   "date": {
     "arrival": "02/02/2017",
     "departure": "02/09/2017",
