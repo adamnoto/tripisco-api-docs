@@ -176,6 +176,120 @@ all response always contain the version ID of the producing API.</p>
 <p>We provide a postman collection of API calls which you can experiment with and
 incorporate to your app. <a href="https://www.getpostman.com/collections/1eb5f910985639fec5ab">Here is the postman collection for you</a>.</p>
 
+          <h1 id="accounts">Accounts</h1>
+
+<h2 id="login">Login</h2>
+
+<table><tbody><tr>
+  <td>Base URL</td>
+  <td>api/v1/accounts/login</td>
+</tr>
+<tr>
+  <td>Method</td>
+  <td>POST</td>
+</tr></tbody></table>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Password01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Y</td>
+<td>Email of the user intending to sign in</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>Y</td>
+<td>Password of the user intending to sign in</td>
+</tr>
+</tbody></table>
+
+<p>Successful response is a JSON document containing:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15ad7047-31f5-4fdd-9df1-4f6df9321948"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>The email for which the token is generated</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>The generated token to identify the user&rsquo;s session</td>
+</tr>
+</tbody></table>
+
+<h2 id="logout">Logout</h2>
+
+<table><tbody><tr>
+  <td>Base URL</td>
+  <td>api/v1/accounts/logout</td>
+</tr>
+<tr>
+  <td>Method</td>
+  <td>DELETE</td>
+</tr></tbody></table>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>Y</td>
+<td>Token generated after the user signed in</td>
+</tr>
+</tbody></table>
+
+<p>Successful response is a JSON document containing:</p>
+
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>inactive</td>
+<td>String</td>
+<td>Indicating if the user should already be inactive/logged out</td>
+</tr>
+</tbody></table>
+
           <h1 id="hotels">Hotels</h1>
 
 <h2 id="search-request">Search request</h2>
@@ -357,7 +471,7 @@ a document with <code class="prettyprint">response.type</code> set to <code clas
 </tr>
 <tr>
 <td>data.amenities</td>
-<td>Array</td>
+<td>String[]</td>
 <td>Array of String of all possible amenities for filtering the hotel result</td>
 </tr>
 </tbody></table>
@@ -614,6 +728,9 @@ for user to select from to clarify the location he want to search.</p>
       </span><span class="s2">"Bar/lounge"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Wi-Fi gratis"</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"bed_types"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 double"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"undiscounted"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"current"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -817,7 +934,7 @@ string array.</p>
 <tr>
 <td>hotel_id</td>
 <td>String</td>
-<td>The hotel ID of the room, must be the same with hotel ID of the hotel.</td>
+<td>The hotel ID of the room, must be the same with hotel ID of the hotel</td>
 </tr>
 <tr>
 <td>name</td>
@@ -838,6 +955,11 @@ string array.</p>
 <td>amenities</td>
 <td>String[]</td>
 <td>Facilities at the room</td>
+</tr>
+<tr>
+<td>bed_types</td>
+<td>Object</td>
+<td>Key-value representation of bed ID and the bed title</td>
 </tr>
 <tr>
 <td>rate</td>
@@ -919,6 +1041,249 @@ string array.</p>
 </tr>
 </tbody></table>
 
+          <h2 id="availability-request">Availability request</h2>
+
+<p>Before showing a booking form, you have to confirm the room availability
+by make a call to this endpoint.</p>
+
+<table><tbody><tr>
+  <td>Base URL</td>
+  <td>api/v1/hotels/available</td>
+</tr>
+<tr>
+  <td>Method</td>
+  <td>GET</td>
+</tr></tbody></table>
+
+<p>Availability request parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>storage_id</td>
+<td>String</td>
+<td>Y</td>
+<td>Storage ID help ensure the request body is not tempered</td>
+</tr>
+<tr>
+<td>room_bed_type</td>
+<td>String</td>
+<td>Y</td>
+<td>Type of the bed, from the key associated to &lsquo;bed_types&rsquo;</td>
+</tr>
+<tr>
+<td>rate_code</td>
+<td>String</td>
+<td>Y</td>
+<td>Rate code of the room in question, from field &#39;rate.code&rsquo;</td>
+</tr>
+<tr>
+<td>room_type_code</td>
+<td>String</td>
+<td>Y</td>
+<td>Type code of the room in question, from field &#39;type_code&rsquo;</td>
+</tr>
+</tbody></table>
+
+<p>All of the parameters needed above is available since the detail request.</p>
+
+<h3 id="response">Response</h3>
+
+<p>Hotel availability may raise <code class="prettyprint">NOTAVL</code> error if the hotel being checked is no longer
+offering room. <code class="prettyprint">NOTAVL</code> can occur if you are sending old/outdated request. Otherwise,
+a success response is given.</p>
+
+<blockquote>
+<p>Hotel availability response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"bed_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bed_type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 double"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hotel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"572068"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Studio Hotel Surabaya - Backpacker"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jln. Sumatra 20 C"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surabaya"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ID"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"arrival"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/02/2017"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"departure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/09/2017"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"arrivalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 02 Feb 2017"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"departureText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 09 Feb 2017"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asrama Umum, 1 tempat tidur double"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"currency_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nightly_rate_total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1157016</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nightly_rates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">165288</span><span class="p">,</span><span class="w">
+        </span><span class="mi">165288</span><span class="p">,</span><span class="w">
+        </span><span class="mi">165288</span><span class="p">,</span><span class="w">
+        </span><span class="mi">165288</span><span class="p">,</span><span class="w">
+        </span><span class="mi">165288</span><span class="p">,</span><span class="w">
+        </span><span class="mi">165288</span><span class="p">,</span><span class="w">
+        </span><span class="mi">165288</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"nightly_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"February  2, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"February  3, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"February  4, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"February  5, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"February  6, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"February  7, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"February  8, 2017"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"refundable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"require_deposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"require_guarantee"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"surcharge_total"</span><span class="p">:</span><span class="w"> </span><span class="mi">242977</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"surcharges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"caption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax Recovery Charges and Service Fees"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"242977.00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"hotel_fees"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"hotel_fees_total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1399993</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"guest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"min_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"adults_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_ages"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bed_type_id</td>
+<td>String</td>
+<td>ID of the bed selection</td>
+</tr>
+<tr>
+<td>bed_type_description</td>
+<td>String</td>
+<td>Bed name</td>
+</tr>
+<tr>
+<td>hotel</td>
+<td>Object</td>
+<td>Hotel object with minimal, essential data</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Object</td>
+<td>The date object</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>Object</td>
+<td>The rate object</td>
+</tr>
+<tr>
+<td>guest</td>
+<td>Object</td>
+<td>The guest object</td>
+</tr>
+</tbody></table>
+
+<h3 id="rate-object">Rate object</h3>
+
+<p><code class="prettyprint">rate</code> object has the following fields:</p>
+
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The room name</td>
+</tr>
+<tr>
+<td>currency_code</td>
+<td>String</td>
+<td>ISO-4217 code to represent the currency the amount is represented</td>
+</tr>
+<tr>
+<td>nightly_rate_total</td>
+<td>Double</td>
+<td>Summary of rate per night, without tax</td>
+</tr>
+<tr>
+<td>nightly_rates</td>
+<td>Double[]</td>
+<td>Array of rates per night since check-in to the day before check-out</td>
+</tr>
+<tr>
+<td>nightly_dates</td>
+<td>String[]</td>
+<td>Date of each chargable nightly rate</td>
+</tr>
+<tr>
+<td>refundable</td>
+<td>Boolean</td>
+<td>Indicating if the booking can be refunded</td>
+</tr>
+<tr>
+<td>require_deposit</td>
+<td>Boolean</td>
+<td>Indicating if deposit at the hotel is needed upon check-in, and can be returned upon check-out according to the check-in terms</td>
+</tr>
+<tr>
+<td>require_guarantee</td>
+<td>Boolean</td>
+<td>If the hotel will deduct amount when customer cannot check-in at the given time, or cancelling after the cancellation deadline</td>
+</tr>
+<tr>
+<td>surcharge_total</td>
+<td>Double</td>
+<td>Total of all taxes and service related charges</td>
+</tr>
+<tr>
+<td>surcharges</td>
+<td>Object[]</td>
+<td>Array with object to give detail of each charge</td>
+</tr>
+<tr>
+<td>hotel_fees</td>
+<td>Float[]</td>
+<td>Detail of additional fees that will be charged upon check-in, the fees will not be part of the booking price</td>
+</tr>
+<tr>
+<td>hotel_fees_total</td>
+<td>Float</td>
+<td>Total of hotel fees the customer will be charged upon check-in, the fees will not be part of the booking price</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Float</td>
+<td>Total amount of chargeable fee so that a booking itinerary can be made</td>
+</tr>
+</tbody></table>
+
           <h1 id="erratic-responses">Erratic responses</h1>
 
 <h2 id="list-of-erratic-responses">List of erratic responses</h2>
@@ -962,6 +1327,10 @@ to your local language if appropriate.</p>
 <tr>
 <td>MISPAR</td>
 <td>Certain required parameter is missing from the request body.</td>
+</tr>
+<tr>
+<td>NOTAVL</td>
+<td>Hotel/room is not available for booking (sending old request?)</td>
 </tr>
 </tbody></table>
 
