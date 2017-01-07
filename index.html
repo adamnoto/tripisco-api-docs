@@ -178,6 +178,76 @@ incorporate to your app. <a href="https://www.getpostman.com/collections/1eb5f91
 
           <h1 id="accounts">Accounts</h1>
 
+<h2 id="signup">Signup</h2>
+
+<table><tbody><tr>
+  <td>Base URL</td>
+  <td>api/v1/accounts/signup</td>
+</tr>
+<tr>
+  <td>Method</td>
+  <td>POST</td>
+</tr></tbody></table>
+
+<blockquote>
+<p>Successful registration response body</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tommy2@tripisco.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PT. Tripisco"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant_name</td>
+<td>String</td>
+<td>Y</td>
+<td>Name of the agent</td>
+</tr>
+<tr>
+<td>merchant_phone</td>
+<td>String</td>
+<td>Y</td>
+<td>Phone of the agent</td>
+</tr>
+<tr>
+<td>merchant_address</td>
+<td>String</td>
+<td>Y</td>
+<td>Physical address of the agent</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>String</td>
+<td>Y</td>
+<td>Email address of the agent, used for login</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>Y</td>
+<td>Password used for logging into the system</td>
+</tr>
+</tbody></table>
+
+<p>All fields above must be sent otherwise a <code class="prettyprint">WRGINP</code> error will be raised.
+If a user with the same email as in <code class="prettyprint">user_email</code> is found, a
+<code class="prettyprint">DUPDAT</code> error will be raised. Otherwise, registration should be successful.</p>
+
 <h2 id="login">Login</h2>
 
 <table><tbody><tr>
@@ -188,6 +258,10 @@ incorporate to your app. <a href="https://www.getpostman.com/collections/1eb5f91
   <td>Method</td>
   <td>POST</td>
 </tr></tbody></table>
+
+<blockquote>
+<p>Login request payload</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Password01"</span><span class="w">
@@ -218,6 +292,10 @@ incorporate to your app. <a href="https://www.getpostman.com/collections/1eb5f91
 </tbody></table>
 
 <p>Successful response is a JSON document containing:</p>
+
+<blockquote>
+<p>Successful login response</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -711,8 +789,8 @@ for user to select from to clarify the location he want to search.</p>
   </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"arrival"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/02/2017"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"departure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/09/2017"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"arrivalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 02 Feb 2017"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"departureText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 09 Feb 2017"</span><span class="w">
+    </span><span class="nt">"arrival_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 02 Feb 2017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"departure_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 09 Feb 2017"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"hotel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">572068</span><span class="p">,</span><span class="w">
@@ -968,6 +1046,15 @@ string array.</p>
 </tr>
 </tbody></table>
 
+<div class='image'>
+<image src="images/bed-variation.jpg"/>
+<h5>Bed variation option for a certain room.</h5>
+</div>
+
+<p>You should display a select box or the likes for each bed type in <code class="prettyprint">bed_types</code>.
+Most of the time <code class="prettyprint">bed_types</code> will only return a single key with its associated
+value, but for certain room it may allow customer to select the bed type.</p>
+
 <h3 id="rate-object">Rate object</h3>
 
 <p><code class="prettyprint">rate</code> object within <code class="prettyprint">rooms</code> data contains the following fields:</p>
@@ -1119,8 +1206,8 @@ a success response is given.</p>
     </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"arrival"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/02/2017"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"departure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02/09/2017"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"arrivalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 02 Feb 2017"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"departureText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 09 Feb 2017"</span><span class="w">
+      </span><span class="nt">"arrival_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 02 Feb 2017"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"departure_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 09 Feb 2017"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asrama Umum, 1 tempat tidur double"</span><span class="p">,</span><span class="w">
@@ -1305,6 +1392,10 @@ to your local language if appropriate.</p>
 <td>Type of error cannot be covered in detail by other error codes listed bellow; an internal error.</td>
 </tr>
 <tr>
+<td>DUPDAT</td>
+<td>Failed at attempting to register the user, account with that email already existed</td>
+</tr>
+<tr>
 <td>ERRKEY</td>
 <td>You send an invalid <code class="prettyprint">Authorization</code> header upon which no agent can be found.</td>
 </tr>
@@ -1313,24 +1404,28 @@ to your local language if appropriate.</p>
 <td>The user&rsquo;s given email and password cannot be found.</td>
 </tr>
 <tr>
-<td>OUTFAIL</td>
-<td>Logout action cannot be performed due to an internal error, please retry.</td>
+<td>MISPAR</td>
+<td>Certain required parameter is missing from the request body.</td>
 </tr>
 <tr>
 <td>NOANS</td>
 <td>Search request yielded no results.</td>
 </tr>
 <tr>
+<td>NOTAVL</td>
+<td>Hotel/room is not available for booking (sending old request?)</td>
+</tr>
+<tr>
+<td>OUTFAIL</td>
+<td>Logout action cannot be performed due to an internal error, please retry.</td>
+</tr>
+<tr>
 <td>WRGDATE</td>
 <td>Wrong inputs on the date, eg. search date is yesterday/day in the past.</td>
 </tr>
 <tr>
-<td>MISPAR</td>
-<td>Certain required parameter is missing from the request body.</td>
-</tr>
-<tr>
-<td>NOTAVL</td>
-<td>Hotel/room is not available for booking (sending old request?)</td>
+<td>WRGINP</td>
+<td>General wrong inputs, please ensure all fields are filled correctly</td>
 </tr>
 </tbody></table>
 
