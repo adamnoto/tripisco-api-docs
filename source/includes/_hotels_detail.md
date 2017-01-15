@@ -1,23 +1,21 @@
 ## Detail request
 
-&nbsp; | &nbsp;
------- | ------
-Base URL | api/v1/hotels/detail
-Method | GET
+<table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/detail</td>
+</tr><tr><td>Method</td><td>GET</td></tr></table>
 
 This detail request API allows you to get more detail about the hotel in particular.
 
 Detail request parameters:
 
 Name | Type | Required | Description
----- | ---- | ---- | ---- |
-arrival_date | String | Y | Date of checkin
-departure_date | String | Y | Date of checkout
+---- | ----- | ----- | -----
+arrival_date | String | Y | Date of checkin (dd/mm/yyyy)
+departure_date | String | Y | Date of checkout (dd/mm/yyyy)
 city | String | Y | Name of the city
 session_id | String | Y | Session ID as returned since the search request
 hotel_id | String | Y | Hotel ID which detail is requested
 
-### Response
+### Detail response
 
 > Hotel detail response
 
@@ -27,8 +25,8 @@ hotel_id | String | Y | Hotel ID which detail is requested
   "date": {
     "arrival": "02/02/2017",
     "departure": "02/09/2017",
-    "arrivalText": "Thu, 02 Feb 2017",
-    "departureText": "Thu, 09 Feb 2017"
+    "arrival_text": "Thu, 02 Feb 2017",
+    "departure_text": "Thu, 09 Feb 2017"
   },
   "hotel": {
     "id": 572068,
@@ -44,6 +42,9 @@ hotel_id | String | Y | Hotel ID which detail is requested
       "Bar/lounge",
       "Wi-Fi gratis"
     ],
+    "bed_types": {
+      "13": "1 double"
+    },
     "rate": {
       "undiscounted": null,
       "current": null
@@ -125,64 +126,67 @@ hotel_id | String | Y | Hotel ID which detail is requested
 }
 ```
 
-Field name | Type | Description
----------- | ----- | ------
-storage_id | String | ID representing several data in Tripisco side, it must be send in subsequent request
-date | Object | Date object
-hotel | Object | Hotel object
-
-### Hotel object
-
 Hotel object have similar body with search request, but there are additional
-fields as well. It is designed this way so that you would only have one `Hotel`
-class at your side.
+fields as well. It is designed this way so that implementor needs only to have one
+Hotel class/struct.
 
 Those detail-only additional fields are:
 
 Field name | Type | Description
----------- | ----- | ------
+---------- | ---- | ------------
 description | String | Description of the property
 checkin_instruction | String | Instruction and regulation for checking into the property
 check_in_time | String | Scheduled time of check-in
 check_out_time | String | Scheduled time of check-out
 area_info | String[] | Array of places of interest around the property
-images | Object[] | Array of object for image consisting the URL, thumbnail and caption.
+images | Object[] | Array of object for image consisting the URL, thumbnail and caption
 rooms | Object[] | Array of object representing each room available for booking
 
-### Area info array
+### `area_info` Array
 
-The area info is list of any places of interest nearby the hotel. It made of
-string array.
+The area info is list of any places of interest nearby the hotel. Each element
+of the array is of type string.
 
-### Image object
+### `images` Array
 
-`images` data contains `image` object with the following fields:
+`images` data contains image object with the following fields:
 
 Field name | Type | Description
----------- | ----- | ------
+---------- | ---- | ------------
 caption | String | Title of the image
 url | String | URL of the full size of the image
 thumbnail_url | String | A URL for the thumbnail version of the image
 
-### Room object
+### `rooms` Array
 
-`rooms` data contains `room` object with the following fields:
+`rooms` data contains room object with the following fields:
 
 Field name | Type | Description
----------- | ----- | ------
-hotel_id | String | The hotel ID of the room, must be the same with hotel ID of the hotel.
+---------- | ---- | ------------
+hotel_id | String | The hotel ID of the room, must be the same with hotel ID of the hotel
 name | String | The room name
 images | String[] | Array of images of the room
 type_code | String | Code for the room
 amenities | String[] | Facilities at the room
+bed_types | Object | Key-value representation of bed ID and the bed title
 rate | Object | The rate object
 
-### Rate object
+<div class='image'>
+  <img src="images/bed-variation.jpg">
+  <h5>Bed variation option for a certain room.</h5>
+</div>
+
+You should display a select box or the likes for each bed type in `bed_types`.
+Most of the time `bed_types` will only return a single key with its
+associated value, but for certain room it may allow customer to
+select the bed type.
+
+### `room.rate` Object
 
 `rate` object within `rooms` data contains the following fields:
 
 Field name | Type | Description
----------- | ----- | ------
+---------- | ---- | ------------
 key | String | The key indicate parameters that leading to this rate
 code | String | Indicating the whole rate code body
 is_refundable | Boolean | Whether the customer later can ask for refund

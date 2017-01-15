@@ -1,13 +1,21 @@
 # Accounts
 
-## Login
+## Signup
 
-Path: `/api/v1/accounts/login` (POST)
+<table><tbody><tr><td>Base URL</td><td>/api/v1/accounts/signup</td>
+</tr><tr><td>Method</td><td>POST</td></tr></table>
+
+> Successful registration response body
 
 ```json
 {
-  "email": "adam@tripisco.com",
-  "password": "Password01"
+  "version": 1,
+  "response": {
+    "user": {
+      "email": "tommy2@tripisco.com",
+      "name": "PT. Tripisco"
+    }
+  }
 }
 ```
 
@@ -15,10 +23,29 @@ Parameters:
 
 Name | Type | Required | Description
 ---- | ----- | ----- | -----
-`email` | String | Y | Email of the user intending to sign in
-`password` | String | Y | Password of the user intending to sign in
+merchant_name | String | Y | Name of the agent
+merchant_phone | String | Y | Phone of the agent
+merchant_address | String | Y | Physical address of the agent
+user_email | String | Y | Email address of the agent, used for login
+password | String | Y | Password used for logging into the system
 
-Successful response is a JSON document containing:
+All the fields above have to be sent, or otherwise a `WRGINP` error be raised.
+If a user with the same email is found, a `DUPDAT` error will be raised.
+Else, registration must be successful.
+
+## Login
+
+<table><tbody><tr><td>Base URL</td><td>/api/v1/accounts/login</td>
+</tr><tr><td>Method</td><td>POST</td></tr></table>
+
+Parameters:
+
+Name | Type | Required | Description
+---- | ----- | ----- | -----
+email | String | Y | Email of the user intending to sign in
+password | String | Y | Password of the user intending to sign in
+
+> Successful login response
 
 ```json
 {
@@ -30,24 +57,24 @@ Successful response is a JSON document containing:
 }
 ```
 
-Field name | Type | Description
----------- | ----- | ------
-`email` | String | The email for which the token is generated
-`token` | String | The generated token to identify the user's session
+Name | Type | Required | Description
+---- | ----- | ----- | -----
+email | String | Y | The email for which the token is generated
+password | String | Y | The generated token to identify the user’s session
 
 ## Logout
 
-Path: `/api/v1/accounts/logout` (DELETE)
+<table><tbody><tr><td>Base URL</td><td>/api/v1/accounts/logout</td>
+</tr><tr><td>Method</td><td>DELETE</td></tr></table>
 
 Parameters:
 
 Name | Type | Required | Description
 ---- | ----- | ------- | ------
-`token` | String | Y | Token generated after the user signed in
+token | String | Y | The token that get generated after the user is signed in
 
 Successful response is a JSON document containing:
 
 Field name | Type | Description
 ---------- | ----- | ------
-`inactive` | String | Indicating if the user should already be inactive/logged out
-
+`inactive` | Boolean | Indicating if the user should already be inactive/logged out

@@ -8,8 +8,11 @@ toc_footers:
 
 includes:
   - intro
+  - accounts
   - hotels
+  - hotels_search
   - hotels_detail
+  - hotels_avail
   - errors
 
 search: true
