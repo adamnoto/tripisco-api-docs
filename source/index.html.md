@@ -13,6 +13,7 @@ includes:
   - hotels_search
   - hotels_detail
   - hotels_avail
+  - hotels_book
   - errors
 
 search: true
