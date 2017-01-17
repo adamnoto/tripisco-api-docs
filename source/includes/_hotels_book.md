@@ -52,6 +52,7 @@ storage_id | String | Y | Storage ID as provided in the availability request.
     "agent": "A00052",
     "doer": "88FD5AE951",
     "ticket_email": "adam@tripisco.com",
+    "type": "HOTEL",
     "booking": {
       "id": "B453B32",
       "status": "UNPAID"
@@ -84,6 +85,7 @@ Field name | Type | Description
 agent | String | The agent's ID.
 doer | String | ID of the user making the booking.
 ticket_email | String | An email address to which the itinerary is expected to be delivered at.
+type | String | Booking type (the possible value currently is just `HOTEL`).
 booking | Object | A booking object, the `ID` must be kept in your side for future reference. The `status` will always evaluate to `UNPAID`.
 rate | Object | A rate object.
 contact | Object | A contact object for the customer
