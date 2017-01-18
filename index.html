@@ -343,10 +343,157 @@ Else, registration must be successful.</p>
 </tr>
 </tbody></table>
 
-          
+          <h1 id="bookings">Bookings</h1>
+
+<p>Booking APIs allow you to do this list listing a user&rsquo;s booking records,
+make payment for the user&rsquo;s booking, and so on.</p>
+
+<p>A booking has a status either one of:</p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UNPAID</td>
+<td>The booking is not yet paid.</td>
+</tr>
+<tr>
+<td>PAID</td>
+<td>The booking is successfully paid.</td>
+</tr>
+<tr>
+<td>RESERVED</td>
+<td>Between paid and reserved. The room is paid, but the itinerary ticket is not yet made.</td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>Payment is made but the supplier has not acknowledge the booking request.</td>
+</tr>
+<tr>
+<td>CANCELLED</td>
+<td>The booking is cancelled due to out of time, customer using fraudulent card, etc.</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>There was an error performing the booking, unrecoverable. Very rare to happen.</td>
+</tr>
+</tbody></table>
+
+          <h2 id="listing-bookings">Listing bookings</h2>
+
+<table><tbody><tr><td>Base URL</td><td>/api/v1/books/all</td>
+</tr><tr><td>Method</td><td>GET</td></tr></table>
+
+<p>This listing endpoint allows you to retrieve all the booking requests
+that you send to Tripisco. This API paginate the response, each page contains
+10 booking records.</p>
+
+<p>List of parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_token</td>
+<td>String</td>
+<td>Y</td>
+<td>Token of the logged in user, if invalid an <code class="prettyprint">INVCRED</code> error will be raised.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>String</td>
+<td>N</td>
+<td>The page to be requested, index starts from 1. It raises <code class="prettyprint">WRGINP</code> if the given value is less than 1.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>N</td>
+<td>Filtering by the status, raises a <code class="prettyprint">WRGINP</code> if not one of the known status above.</td>
+</tr>
+</tbody></table>
+
+<h3 id="listing-bookings-response">Listing bookings response</h3>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_next"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00052"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"doer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88FD5AE951"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticket_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOTEL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"booking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCB8C00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNPAID"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"909993.0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"rate_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">90999300</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dirga Pahlevi"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nusantara"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"hand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"085607071341"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"home"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3953672"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalan Sagu"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gresik"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61151"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>Integer</td>
+<td>Indicate the current page</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Integer</td>
+<td>Number of all records</td>
+</tr>
+<tr>
+<td>has_next</td>
+<td>Boolean</td>
+<td>Indicate if there is a next page that contains other records</td>
+</tr>
+<tr>
+<td>bookings</td>
+<td>Object</td>
+<td>Data of booking, similar to the object returned when booking a hotel</td>
+</tr>
+</tbody></table>
+
           <h1 id="hotels">Hotels</h1>
 
-<h2 id="search-request">Search request</h2>
+          <h2 id="search-request">Search request</h2>
 
 <table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/search</td>
 </tr><tr><td>Method</td><td>GET</td></tr></table>
@@ -1431,6 +1578,7 @@ booking, a call to the pay API is required.</p>
     </span><span class="nt">"agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00052"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"doer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88FD5AE951"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"ticket_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOTEL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"booking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B453B32"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNPAID"</span><span class="w">
@@ -1478,6 +1626,11 @@ booking, a call to the pay API is required.</p>
 <td>ticket_email</td>
 <td>String</td>
 <td>An email address to which the itinerary is expected to be delivered at.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Booking type (the possible value currently is just <code class="prettyprint">HOTEL</code>).</td>
 </tr>
 <tr>
 <td>booking</td>
