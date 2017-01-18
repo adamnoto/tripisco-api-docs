@@ -180,14 +180,8 @@ incorporate to your app. <a href="https://www.getpostman.com/collections/1eb5f91
 
 <h2 id="signup">Signup</h2>
 
-<table><tbody><tr>
-  <td>Base URL</td>
-  <td>api/v1/accounts/signup</td>
-</tr>
-<tr>
-  <td>Method</td>
-  <td>POST</td>
-</tr></tbody></table>
+<table><tbody><tr><td>Base URL</td><td>/api/v1/accounts/signup</td>
+</tr><tr><td>Method</td><td>POST</td></tr></table>
 
 <blockquote>
 <p>Successful registration response body</p>
@@ -244,29 +238,15 @@ incorporate to your app. <a href="https://www.getpostman.com/collections/1eb5f91
 </tr>
 </tbody></table>
 
-<p>All fields above must be sent otherwise a <code class="prettyprint">WRGINP</code> error will be raised.
-If a user with the same email as in <code class="prettyprint">user_email</code> is found, a
-<code class="prettyprint">DUPDAT</code> error will be raised. Otherwise, registration should be successful.</p>
+<p>All the fields above have to be sent, or otherwise a <code class="prettyprint">WRGINP</code> error be raised.
+If a user with the same email is found, a <code class="prettyprint">DUPDAT</code> error will be raised.
+Else, registration must be successful.</p>
 
 <h2 id="login">Login</h2>
 
-<table><tbody><tr>
-  <td>Base URL</td>
-  <td>api/v1/accounts/login</td>
-</tr>
-<tr>
-  <td>Method</td>
-  <td>POST</td>
-</tr></tbody></table>
+<table><tbody><tr><td>Base URL</td><td>/api/v1/accounts/login</td>
+</tr><tr><td>Method</td><td>POST</td></tr></table>
 
-<blockquote>
-<p>Login request payload</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Password01"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 <p>Parameters:</p>
 
 <table><thead>
@@ -291,8 +271,6 @@ If a user with the same email as in <code class="prettyprint">user_email</code> 
 </tr>
 </tbody></table>
 
-<p>Successful response is a JSON document containing:</p>
-
 <blockquote>
 <p>Successful login response</p>
 </blockquote>
@@ -306,33 +284,30 @@ If a user with the same email as in <code class="prettyprint">user_email</code> 
 </span></code></pre>
 <table><thead>
 <tr>
-<th>Field name</th>
+<th>Name</th>
 <th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>email</td>
 <td>String</td>
+<td>Y</td>
 <td>The email for which the token is generated</td>
 </tr>
 <tr>
-<td>token</td>
+<td>password</td>
 <td>String</td>
-<td>The generated token to identify the user&rsquo;s session</td>
+<td>Y</td>
+<td>The generated token to identify the user’s session</td>
 </tr>
 </tbody></table>
 
 <h2 id="logout">Logout</h2>
 
-<table><tbody><tr>
-  <td>Base URL</td>
-  <td>api/v1/accounts/logout</td>
-</tr>
-<tr>
-  <td>Method</td>
-  <td>DELETE</td>
-</tr></tbody></table>
+<table><tbody><tr><td>Base URL</td><td>/api/v1/accounts/logout</td>
+</tr><tr><td>Method</td><td>DELETE</td></tr></table>
 
 <p>Parameters:</p>
 
@@ -348,7 +323,7 @@ If a user with the same email as in <code class="prettyprint">user_email</code> 
 <td>token</td>
 <td>String</td>
 <td>Y</td>
-<td>Token generated after the user signed in</td>
+<td>The token that get generated after the user is signed in</td>
 </tr>
 </tbody></table>
 
@@ -362,31 +337,19 @@ If a user with the same email as in <code class="prettyprint">user_email</code> 
 </tr>
 </thead><tbody>
 <tr>
-<td>inactive</td>
-<td>String</td>
+<td><code class="prettyprint">inactive</code></td>
+<td>Boolean</td>
 <td>Indicating if the user should already be inactive/logged out</td>
 </tr>
 </tbody></table>
 
+          
           <h1 id="hotels">Hotels</h1>
 
 <h2 id="search-request">Search request</h2>
 
-<table><thead>
-<tr>
-<th>&nbsp;</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Base URL</td>
-<td>api/v1/hotels/search</td>
-</tr>
-<tr>
-<td>Method</td>
-<td>GET</td>
-</tr>
-</tbody></table>
+<table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/search</td>
+</tr><tr><td>Method</td><td>GET</td></tr></table>
 
 <p>Search parameters:</p>
 
@@ -459,7 +422,8 @@ If a user with the same email as in <code class="prettyprint">user_email</code> 
 <p>When there are children (more than 0), age must be submitted in the format of
 <code class="prettyprint">child_age_n</code> whereby n is the index of the children ages.</p>
 
-<p>Supposed there are two children, then additional data required is as follow.</p>
+<p>Supposed that there are two children, then additional data must be
+supplied as follow.</p>
 
 <table><thead>
 <tr>
@@ -494,10 +458,10 @@ If a user with the same email as in <code class="prettyprint">user_email</code> 
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOTEL_SEARCH_RESULTS"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="nt">"sorter"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}],</span><span class="w">
+      </span><span class="nt">"sorter"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">""</span><span class="p">],</span><span class="w">
       </span><span class="nt">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-data"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"amenities"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="nt">"amenities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">""</span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -534,12 +498,12 @@ a document with <code class="prettyprint">response.type</code> set to <code clas
 </tr>
 <tr>
 <td>data.results</td>
-<td>Object</td>
+<td>Object[]</td>
 <td>Each individual Hotel object</td>
 </tr>
 <tr>
 <td>data.sorter</td>
-<td>Object</td>
+<td>String[]</td>
 <td>The available sorter</td>
 </tr>
 <tr>
@@ -687,9 +651,10 @@ within <code class="prettyprint">response.data</code>.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>User may input location name which turns out to be ambiguous. In such a case,
-we will return <code class="prettyprint">HOTEL_ALTERNATIVE_LOCATIONS</code> where you need to display something
-for user to select from to clarify the location he want to search.</p>
+<p>User may input ambiguous location name. On which,
+Tripisco API will return a <code class="prettyprint">HOTEL_ALTERNATIVE_LOCATIONS</code> response type
+where implementer needs to display something for the user to select from,
+to clarify the location he wanted to search.</p>
 
 <p>The <code class="prettyprint">data</code> body of <code class="prettyprint">HOTEL_ALTERNATIVE_LOCATIONS</code> consist of the following fields:</p>
 
@@ -719,21 +684,8 @@ for user to select from to clarify the location he want to search.</p>
 
           <h2 id="detail-request">Detail request</h2>
 
-<table><thead>
-<tr>
-<th>&nbsp;</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Base URL</td>
-<td>api/v1/hotels/detail</td>
-</tr>
-<tr>
-<td>Method</td>
-<td>GET</td>
-</tr>
-</tbody></table>
+<table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/detail</td>
+</tr><tr><td>Method</td><td>GET</td></tr></table>
 
 <p>This detail request API allows you to get more detail about the hotel in particular.</p>
 
@@ -751,13 +703,13 @@ for user to select from to clarify the location he want to search.</p>
 <td>arrival_date</td>
 <td>String</td>
 <td>Y</td>
-<td>Date of checkin</td>
+<td>Date of checkin (dd/mm/yyyy)</td>
 </tr>
 <tr>
 <td>departure_date</td>
 <td>String</td>
 <td>Y</td>
-<td>Date of checkout</td>
+<td>Date of checkout (dd/mm/yyyy)</td>
 </tr>
 <tr>
 <td>city</td>
@@ -779,7 +731,7 @@ for user to select from to clarify the location he want to search.</p>
 </tr>
 </tbody></table>
 
-<h3 id="response">Response</h3>
+<h3 id="detail-response">Detail response</h3>
 
 <blockquote>
 <p>Hotel detail response</p>
@@ -889,35 +841,9 @@ for user to select from to clarify the location he want to search.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<table><thead>
-<tr>
-<th>Field name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>storage_id</td>
-<td>String</td>
-<td>ID representing several data in Tripisco side, it must be send in subsequent request</td>
-</tr>
-<tr>
-<td>date</td>
-<td>Object</td>
-<td>Date object</td>
-</tr>
-<tr>
-<td>hotel</td>
-<td>Object</td>
-<td>Hotel object</td>
-</tr>
-</tbody></table>
-
-<h3 id="hotel-object">Hotel object</h3>
-
 <p>Hotel object have similar body with search request, but there are additional
-fields as well. It is designed this way so that you would only have one <code class="prettyprint">Hotel</code>
-class at your side.</p>
+fields as well. It is designed this way so that implementor needs only to have one
+Hotel class/struct.</p>
 
 <p>Those detail-only additional fields are:</p>
 
@@ -956,7 +882,7 @@ class at your side.</p>
 <tr>
 <td>images</td>
 <td>Object[]</td>
-<td>Array of object for image consisting the URL, thumbnail and caption.</td>
+<td>Array of object for image consisting the URL, thumbnail and caption</td>
 </tr>
 <tr>
 <td>rooms</td>
@@ -965,14 +891,14 @@ class at your side.</p>
 </tr>
 </tbody></table>
 
-<h3 id="area-info-array">Area info array</h3>
+<h3 id="area_info-array"><code class="prettyprint">area_info</code> Array</h3>
 
-<p>The area info is list of any places of interest nearby the hotel. It made of
-string array.</p>
+<p>The area info is list of any places of interest nearby the hotel. Each element
+of the array is of type string.</p>
 
-<h3 id="image-object">Image object</h3>
+<h3 id="images-array"><code class="prettyprint">images</code> Array</h3>
 
-<p><code class="prettyprint">images</code> data contains <code class="prettyprint">image</code> object with the following fields:</p>
+<p><code class="prettyprint">images</code> data contains image object with the following fields:</p>
 
 <table><thead>
 <tr>
@@ -998,9 +924,9 @@ string array.</p>
 </tr>
 </tbody></table>
 
-<h3 id="room-object">Room object</h3>
+<h3 id="rooms-array"><code class="prettyprint">rooms</code> Array</h3>
 
-<p><code class="prettyprint">rooms</code> data contains <code class="prettyprint">room</code> object with the following fields:</p>
+<p><code class="prettyprint">rooms</code> data contains room object with the following fields:</p>
 
 <table><thead>
 <tr>
@@ -1047,15 +973,16 @@ string array.</p>
 </tbody></table>
 
 <div class='image'>
-<image src="images/bed-variation.jpg"/>
-<h5>Bed variation option for a certain room.</h5>
+  <img src="images/bed-variation.jpg">
+  <h5>Bed variation option for a certain room.</h5>
 </div>
 
 <p>You should display a select box or the likes for each bed type in <code class="prettyprint">bed_types</code>.
-Most of the time <code class="prettyprint">bed_types</code> will only return a single key with its associated
-value, but for certain room it may allow customer to select the bed type.</p>
+Most of the time <code class="prettyprint">bed_types</code> will only return a single key with its
+associated value, but for certain room it may allow customer to
+select the bed type.</p>
 
-<h3 id="rate-object">Rate object</h3>
+<h3 id="room-rate-object"><code class="prettyprint">room.rate</code> Object</h3>
 
 <p><code class="prettyprint">rate</code> object within <code class="prettyprint">rooms</code> data contains the following fields:</p>
 
@@ -1130,17 +1057,32 @@ value, but for certain room it may allow customer to select the bed type.</p>
 
           <h2 id="availability-request">Availability request</h2>
 
-<p>Before showing a booking form, you have to confirm the room availability
-by make a call to this endpoint.</p>
+<p>Call the availability request when displaying the booking form in your app,
+It helps ensure the room availability as well as locking the price from
+fluctuating.</p>
 
-<table><tbody><tr>
-  <td>Base URL</td>
-  <td>api/v1/hotels/available</td>
-</tr>
-<tr>
-  <td>Method</td>
-  <td>GET</td>
-</tr></tbody></table>
+<table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/available</td>
+</tr><tr><td>Method</td><td>GET</td></tr></table>
+
+<p>Data from this call have to be displayed on the booking form. Those
+data are:</p>
+
+<ul>
+<li>Hotel name, and its location</li>
+<li>The check-in and check-out date</li>
+<li>Rate name</li>
+<li>Bed type</li>
+<li>Detail of the rates per night</li>
+<li>Total of nightly rates</li>
+<li>Detail of the surcharges</li>
+<li>Total of surcharge</li>
+<li>Detail of additional hotel fees</li>
+<li>Total of hotel fees</li>
+<li>All total chargeable rate</li>
+<li>Indication if refundable</li>
+<li>Indication if require deposit</li>
+<li>The guest detail (minimum age, how many adults and children)</li>
+</ul>
 
 <p>Availability request parameters:</p>
 
@@ -1162,29 +1104,25 @@ by make a call to this endpoint.</p>
 <td>room_bed_type</td>
 <td>String</td>
 <td>Y</td>
-<td>Type of the bed, from the key associated to &lsquo;bed_types&rsquo;</td>
+<td>Type of the bed, from the key associated to <code class="prettyprint">bed_types</code></td>
 </tr>
 <tr>
 <td>rate_code</td>
 <td>String</td>
 <td>Y</td>
-<td>Rate code of the room in question, from field &#39;rate.code&rsquo;</td>
+<td>Rate code of the room in question, from field &lsquo;rate.code’</td>
 </tr>
 <tr>
 <td>room_type_code</td>
 <td>String</td>
 <td>Y</td>
-<td>Type code of the room in question, from field &#39;type_code&rsquo;</td>
+<td>Type code of the room in question, from field <code class="prettyprint">type_code</code></td>
 </tr>
 </tbody></table>
 
 <p>All of the parameters needed above is available since the detail request.</p>
 
-<h3 id="response">Response</h3>
-
-<p>Hotel availability may raise <code class="prettyprint">NOTAVL</code> error if the hotel being checked is no longer
-offering room. <code class="prettyprint">NOTAVL</code> can occur if you are sending old/outdated request. Otherwise,
-a success response is given.</p>
+<h3 id="availability-response">Availability response</h3>
 
 <blockquote>
 <p>Hotel availability response</p>
@@ -1254,6 +1192,10 @@ a success response is given.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>Hotel availability may raise <code class="prettyprint">NOTAVL</code> error if the hotel being checked is no
+longer offering room. <code class="prettyprint">NOTAVL</code> can also occur if you send an old/outdated request.
+Otherwise, a success response is given.</p>
+
 <table><thead>
 <tr>
 <th>Field name</th>
@@ -1293,9 +1235,7 @@ a success response is given.</p>
 </tr>
 </tbody></table>
 
-<h3 id="rate-object">Rate object</h3>
-
-<p><code class="prettyprint">rate</code> object has the following fields:</p>
+<h3 id="rate-object"><code class="prettyprint">rate</code> object</h3>
 
 <table><thead>
 <tr>
@@ -1371,6 +1311,194 @@ a success response is given.</p>
 </tr>
 </tbody></table>
 
+          <h2 id="booking-request">Booking request</h2>
+
+<p>Calling this API will create a booking record at Tripisco. However,
+the booking will have an <code class="prettyprint">UNPAID</code> status. For making payment to the
+booking, a call to the pay API is required.</p>
+
+<table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/book</td>
+</tr><tr><td>Method</td><td>POST</td></tr></table>
+
+<blockquote>
+<p>Example of a booking request payload</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dirga Pahlevi"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nusantara"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hand_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"085607071341"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"home_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3953672"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalan Sagu"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gresik"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61151"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ticket_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"storage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tsco88a_cdcc34c0-5ac6-4baf-b066-a5d63437d325"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"782cd05c-80c8-4be4-afd7-c362773b028e"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Booking request parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_token</td>
+<td>String</td>
+<td>Y</td>
+<td>Token of the logged in user, if invalid an <code class="prettyprint">INVCRED</code> error will be raised.</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>String</td>
+<td>Y</td>
+<td>First/given name of the customer.</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>String</td>
+<td>Y</td>
+<td>Last/family name of the customer.</td>
+</tr>
+<tr>
+<td>hand_phone</td>
+<td>String</td>
+<td>Y</td>
+<td>The customer&rsquo;s mobile phone number.</td>
+</tr>
+<tr>
+<td>home_phone</td>
+<td>String</td>
+<td>Y</td>
+<td>The customer&rsquo;s home phone number.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>Y</td>
+<td>The customer&rsquo;s home address.</td>
+</tr>
+<tr>
+<td>country_code</td>
+<td>String</td>
+<td>N</td>
+<td><a href="https://www.iso.org/obp/ui/#search">Alpha2</a> country code (eg. ID, KR).</td>
+</tr>
+<tr>
+<td>province_code</td>
+<td>String</td>
+<td>N</td>
+<td>Code for the province/subregion.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String</td>
+<td>N</td>
+<td>Name of the city of the customer&rsquo;s home address.</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td>String</td>
+<td>Y</td>
+<td>Postal code of the home address.</td>
+</tr>
+<tr>
+<td>ticket_email</td>
+<td>String</td>
+<td>Y</td>
+<td>Email address of which the itinerary ticket be sent to.</td>
+</tr>
+<tr>
+<td>storage_id</td>
+<td>String</td>
+<td>Y</td>
+<td>Storage ID as provided in the availability request.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hotel-booking-response">Hotel booking response</h3>
+
+<blockquote>
+<p>Hotel booking response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00052"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"doer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88FD5AE951"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ticket_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"booking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B453B32"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNPAID"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1399993.0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">139999300</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dirga Pahlevi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nusantara"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"hand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"085607071341"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"home"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3953672"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalan Sagu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gresik"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61151"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>agent</td>
+<td>String</td>
+<td>The agent&rsquo;s ID.</td>
+</tr>
+<tr>
+<td>doer</td>
+<td>String</td>
+<td>ID of the user making the booking.</td>
+</tr>
+<tr>
+<td>ticket_email</td>
+<td>String</td>
+<td>An email address to which the itinerary is expected to be delivered at.</td>
+</tr>
+<tr>
+<td>booking</td>
+<td>Object</td>
+<td>A booking object, the <code class="prettyprint">ID</code> must be kept in your side for future reference. The <code class="prettyprint">status</code> will always evaluate to <code class="prettyprint">UNPAID</code>.</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>Object</td>
+<td>A rate object.</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>Object</td>
+<td>A contact object for the customer</td>
+</tr>
+</tbody></table>
+
+<p>Upon hitting this API, the booking status will always evaluate to <code class="prettyprint">UNPAID</code>.
+If you hit this API for the second time, an <code class="prettyprint">INTERR</code> will be raised.</p>
+
           <h1 id="erratic-responses">Erratic responses</h1>
 
 <h2 id="list-of-erratic-responses">List of erratic responses</h2>
@@ -1393,7 +1521,7 @@ to your local language if appropriate.</p>
 </tr>
 <tr>
 <td>DUPDAT</td>
-<td>Failed at attempting to register the user, account with that email already existed</td>
+<td>Duplicate record attempted to be made, for instance: attempting to register the user, account with an already registered email address.</td>
 </tr>
 <tr>
 <td>ERRKEY</td>
@@ -1401,7 +1529,7 @@ to your local language if appropriate.</p>
 </tr>
 <tr>
 <td>INVCRED</td>
-<td>The user&rsquo;s given email and password cannot be found.</td>
+<td>The user&rsquo;s given email and password cannot be found, or no authenticated user info can be found on API endpoint that requires <code class="prettyprint">user_token</code>.</td>
 </tr>
 <tr>
 <td>MISPAR</td>
@@ -1425,7 +1553,11 @@ to your local language if appropriate.</p>
 </tr>
 <tr>
 <td>WRGINP</td>
-<td>General wrong inputs, please ensure all fields are filled correctly</td>
+<td>General wrong inputs, please ensure all fields are filled correctly.</td>
+</tr>
+<tr>
+<td>WRGSTS</td>
+<td>Wrong status/inappropriate status. Eg. customer attempt to pay already paid booking.</td>
 </tr>
 </tbody></table>
 
