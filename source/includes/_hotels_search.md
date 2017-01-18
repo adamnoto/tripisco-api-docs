@@ -1,5 +1,3 @@
-# Hotels
-
 ## Search request
 
 <table><tbody><tr><td>Base URL</td><td>/api/v1/hotels/search</td>

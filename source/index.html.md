@@ -9,6 +9,8 @@ toc_footers:
 includes:
   - intro
   - accounts
+  - bookings
+  - bookings_listing
   - hotels
   - hotels_search
   - hotels_detail
