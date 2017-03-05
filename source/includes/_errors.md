@@ -10,9 +10,10 @@ We will add support for Bahasa Indonesia in the future release.
 
 code | meaning
 ---- | -------
-INTERR | Type of error cannot be covered in detail by other error codes listed bellow; an internal error.
+BKGERR | Error in doing the booking request.
 DUPDAT | Duplicate record attempted to be made, for instance: attempting to register the user, account with an already registered email address.
 ERRKEY | You send an invalid `Authorization` header upon which no agent can be found.
+INTERR | Type of error cannot be covered in detail by other error codes listed bellow; an internal error.
 INVCRED | The user's given email and password cannot be found, or no authenticated user info can be found on API endpoint that requires `user_token`.
 MISPAR | Certain required parameter is missing from the request body.
 NOANS | Search request yielded no results.

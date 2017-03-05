@@ -10,6 +10,7 @@ includes:
   - intro
   - accounts
   - bookings
+  - bookings_get_by_id
   - bookings_listing
   - hotels
   - hotels_search

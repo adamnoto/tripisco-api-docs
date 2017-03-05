@@ -24,37 +24,7 @@ status | String | N | Filtering by the status, raises a `WRGINP` if not one of t
     "page": 1,
     "total": 7,
     "has_next": false,
-    "bookings": [
-      {
-        "agent": "A00052",
-        "doer": "88FD5AE951",
-        "ticket_email": "adam@tripisco.com",
-        "type": "HOTEL",
-        "booking": {
-          "id": "BCB8C00",
-          "status": "UNPAID"
-        },
-        "rate": {
-          "currency": "IDR",
-          "rate": "909993.0",
-          "rate_cents": 90999300
-        },
-        "contact": {
-          "first_name": "Dirga Pahlevi",
-          "last_name": "Nusantara",
-          "phone": {
-            "hand": "085607071341",
-            "home": "3953672"
-          },
-          "address": {
-            "location": "Jalan Sagu",
-            "city": "Gresik",
-            "country_code": null,
-            "postcode": "61151"
-          }
-        }
-      }
-    ]
+    "bookings": [{...}]
   }
 }
 ```
@@ -64,4 +34,4 @@ Field name | Type | Description
 page | Integer | Indicate the current page
 total | Integer | Number of all records
 has_next | Boolean | Indicate if there is a next page that contains other records
-bookings | Object | Data of booking, similar to the object returned when booking a hotel
+bookings | Object | Data of booking, similar to the object returned when booking a hotel, or get a booking by ID
