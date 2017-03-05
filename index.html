@@ -362,11 +362,11 @@ make payment for the user&rsquo;s booking, and so on.</p>
 </tr>
 <tr>
 <td>PAID</td>
-<td>The booking is successfully paid.</td>
+<td>The booking is successfully paid, but no ticket is issued yet.</td>
 </tr>
 <tr>
 <td>RESERVED</td>
-<td>Between paid and reserved. The room is paid, but the itinerary ticket is not yet made.</td>
+<td>Booking is paid, and the ticket is already issued.</td>
 </tr>
 <tr>
 <td>PENDING</td>
@@ -379,6 +379,115 @@ make payment for the user&rsquo;s booking, and so on.</p>
 <tr>
 <td>ERROR</td>
 <td>There was an error performing the booking, unrecoverable. Very rare to happen.</td>
+</tr>
+</tbody></table>
+
+<p>The <code class="prettyprint">PAID</code> status essentially waiting the hotel partner to acknowledge the booking.
+It doesn&rsquo;t take a long time for the booking to be <code class="prettyprint">RESERVED</code>. In fact,
+most of the time the <code class="prettyprint">PAID</code> status is unnoticable.</p>
+
+          <h2 id="get-booking">Get booking</h2>
+
+<table><tbody><tr><td>Base URL</td><td>/api/v1/books/by_id</td>
+</tr><tr><td>Method</td><td>GET</td></tr></table>
+
+<p>This get booking by ID endpoint can be used to get specific booking data.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00052"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"doer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88FD5AE951"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ticket_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam.pahlevi@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOTEL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"booking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF50814"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNPAID"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"checkin_instruction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cancellation_policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kami memahami bahwa kadang kala rencana tidak berjalan seperti yang diharapkan. Tidak dikenakan biaya perubahan atau pembatalan. Namun demikian, properti ini (Capsule Homestay Surabaya) memberlakukan denda berikut kepada pelanggan yang perlu kami informasikan: pembatalan atau perubahan yang dibuat setelah pukul 18:00 ((GMT+07:00) Bangkok, Hanoi, Jakarta) tanggal 05 Mar 17 akan dikenakan denda sebesar harga 1 Kamar &amp; Pajak."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89999.0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">8999900</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adam Pahlevi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baihaqi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"hand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08151666433"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"home"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3953672"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalan Beton"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gresik"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61151"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>List of parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Y</td>
+<td>The ID of the booking that want to be retrieved</td>
+</tr>
+</tbody></table>
+
+<h3 id="listing-bookings-response">Listing bookings response</h3>
+
+<table><thead>
+<tr>
+<th>Field name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>agent</td>
+<td>String</td>
+<td>The agent/company/merchant ID</td>
+</tr>
+<tr>
+<td>doer</td>
+<td>String</td>
+<td>The user registered at the agent that made the booking request</td>
+</tr>
+<tr>
+<td>ticket_email</td>
+<td>String</td>
+<td>The email address to which the ticket will be sent to</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>What the booking is made for</td>
+</tr>
+<tr>
+<td>booking</td>
+<td>Object</td>
+<td>An object that specify in detail about the booking, its status, and policies</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>Object</td>
+<td>An object containing the final pricing, and in what currency</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>Object</td>
+<td>Specify the person contactable for the booking</td>
 </tr>
 </tbody></table>
 
@@ -428,37 +537,7 @@ that you send to Tripisco. This API paginate the response, each page contains
     </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
     </span><span class="nt">"has_next"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00052"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"doer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88FD5AE951"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ticket_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adam@tripisco.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOTEL"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"booking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCB8C00"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNPAID"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"909993.0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"rate_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">90999300</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dirga Pahlevi"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nusantara"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"hand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"085607071341"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3953672"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalan Sagu"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gresik"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61151"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="nt">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -487,7 +566,7 @@ that you send to Tripisco. This API paginate the response, each page contains
 <tr>
 <td>bookings</td>
 <td>Object</td>
-<td>Data of booking, similar to the object returned when booking a hotel</td>
+<td>Data of booking, similar to the object returned when booking a hotel, or get a booking by ID</td>
 </tr>
 </tbody></table>
 
@@ -1669,8 +1748,8 @@ to your local language if appropriate.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>INTERR</td>
-<td>Type of error cannot be covered in detail by other error codes listed bellow; an internal error.</td>
+<td>BKGERR</td>
+<td>Error in doing the booking request.</td>
 </tr>
 <tr>
 <td>DUPDAT</td>
@@ -1679,6 +1758,10 @@ to your local language if appropriate.</p>
 <tr>
 <td>ERRKEY</td>
 <td>You send an invalid <code class="prettyprint">Authorization</code> header upon which no agent can be found.</td>
+</tr>
+<tr>
+<td>INTERR</td>
+<td>Type of error cannot be covered in detail by other error codes listed bellow; an internal error.</td>
 </tr>
 <tr>
 <td>INVCRED</td>
