@@ -24,7 +24,7 @@ status | String | N | Filtering by the status, raises a `WRGINP` if not one of t
     "page": 1,
     "total": 7,
     "has_next": false,
-    "bookings": [{...}]
+    "bookings": [{}]
   }
 }
 ```

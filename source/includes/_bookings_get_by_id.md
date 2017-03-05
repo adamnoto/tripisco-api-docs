@@ -5,14 +5,6 @@
 
 This get booking by ID endpoint can be used to get specific booking data.
 
-List of parameters:
-
-Name | Type | Required | Description
----- | ---- | ---- | ---- |
-id | String | Y | The ID of the booking that want to be retrieved
-
-### Listing bookings response
-
 ```json
 {
   "version": 1,
@@ -49,6 +41,14 @@ id | String | Y | The ID of the booking that want to be retrieved
   }
 }
 ```
+
+List of parameters:
+
+Name | Type | Required | Description
+---- | ---- | ---- | ---- |
+id | String | Y | The ID of the booking that want to be retrieved
+
+### Listing bookings response
 
 Field name | Type | Description
 ---------- | ---- | ------------
