@@ -392,26 +392,6 @@ most of the time the <code class="prettyprint">PAID</code> status is unnoticable
 </tr><tr><td>Method</td><td>GET</td></tr></table>
 
 <p>This get booking by ID endpoint can be used to get specific booking data.</p>
-
-<p>List of parameters:</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>String</td>
-<td>Y</td>
-<td>The ID of the booking that want to be retrieved</td>
-</tr>
-</tbody></table>
-
-<h3 id="listing-bookings-response">Listing bookings response</h3>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -447,6 +427,26 @@ most of the time the <code class="prettyprint">PAID</code> status is unnoticable
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>List of parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Y</td>
+<td>The ID of the booking that want to be retrieved</td>
+</tr>
+</tbody></table>
+
+<h3 id="listing-bookings-response">Listing bookings response</h3>
+
 <table><thead>
 <tr>
 <th>Field name</th>
@@ -537,7 +537,7 @@ that you send to Tripisco. This API paginate the response, each page contains
     </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
     </span><span class="nt">"has_next"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="err">...</span><span class="p">}]</span><span class="w">
+    </span><span class="nt">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
