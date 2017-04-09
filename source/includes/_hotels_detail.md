@@ -24,7 +24,7 @@ hotel_id | String | Y | Hotel ID which detail is requested
   "storage_id": "tsco88a_fa36ba5f-abcdef",
   "date": {
     "arrival": "02/02/2017",
-    "departure": "02/09/2017",
+    "departure": "09/02/2017",
     "arrival_text": "Thu, 02 Feb 2017",
     "departure_text": "Thu, 09 Feb 2017"
   },

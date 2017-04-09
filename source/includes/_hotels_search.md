@@ -8,8 +8,8 @@ Search parameters:
 Name | Type | Required | Description
 ---- | ---- | ---- | ---- |
 sorter | String | Y | Ordering of the return, currently only support `BUDGET`.
-arrival_date | String | Y | Date of checkin
-departure_date | String | Y | Date of checkout
+arrival_date | String | Y | Date of checkin (dd/mm/yyyy)
+departure_date | String | Y | Date of checkout (dd/mm/yyyy)
 city | String | Y | Name of the city
 name | String | N | Name of the hotel
 min_rating | Integer | Y | Minimal quality of hotels in the range of 1 to 5
