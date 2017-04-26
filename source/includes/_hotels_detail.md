@@ -64,64 +64,64 @@ hotel_id | String | Y | Hotel ID which detail is requested
       {
         "caption": "Featured Image",
         "url": "http://hotel.cdn.tripisco.com/...",
-        "thumbnail_url": "http://hotel.cdn.tripisco.com/..."
+        "thumbnail_url": "http://hotel.cdn.tripisco.com/...",
+        "hires_url": "http://hotel.cdn.tripisco.com/..."
       },
       {
         "caption": "Guestroom",
         "url": "http://hotel.cdn.tripisco.com/...",
-        "thumbnail_url": "http://hotel.cdn.tripisco.com/..."
+        "thumbnail_url": "http://hotel.cdn.tripisco.com/...",
+        "hires_url": "http://hotel.cdn.tripisco.com/..."
       },
     ],
-    "rooms": [
-      {
-        "hotel_id": 572068,
-        "name": "Asrama Umum, 1 tempat tidur single",
-        "images": [
-          "http://hotel.cdn.tripisco.com/...",
-          "http://hotel.cdn.tripisco.com/...",
+    "rooms": {"201421658": {
+      "hotel_id": 572068,
+      "name": "Asrama Umum, 1 tempat tidur single",
+      "images": [
+        "http://hotel.cdn.tripisco.com/...",
+        "http://hotel.cdn.tripisco.com/...",
+      ],
+      "type_code": "201421658",
+      "amenities": [
+        "AC",
+        "Air minum kemasan gratis",
+        "Wi-Fi gratis"
+      ],
+      "rate": {
+        "key": "eaef5b47-4a2b-4964-b6e0-9a6885d3f609-5212",
+        "code": 207037461,
+        "is_refundable": true,
+        "require_guarantee": false,
+        "require_deposit": true,
+        "total": 840000,
+        "currency": "IDR",
+        "nightly": [
+          99173,
+          99173,
+          99173,
+          99173,
+          99173,
+          99173,
+          99173
         ],
-        "type_code": "201421658",
-        "amenities": [
-          "AC",
-          "Air minum kemasan gratis",
-          "Wi-Fi gratis"
-        ],
-        "rate": {
-          "key": "eaef5b47-4a2b-4964-b6e0-9a6885d3f609-5212",
-          "code": 207037461,
-          "is_refundable": true,
-          "require_guarantee": false,
-          "require_deposit": true,
-          "total": 840000,
-          "currency": "IDR",
-          "nightly": [
-            99173,
-            99173,
-            99173,
-            99173,
-            99173,
-            99173,
-            99173
-          ],
-          "surcharge_total": 145789,
-          "surcharges": [
-            {
-              "caption": "Tax Recovery Charges and Service Fees",
-              "amount": "145789.00"
-            }
-          ]
-        },
-        "policy": {
-          "cancellation": "Kami memahami ..."
-        },
-        "guest": {
-          "min_age": 0,
-          "adults_count": 1,
-          "children_count": 0,
-          "children_ages": []
-        }
+        "surcharge_total": 145789,
+        "surcharges": [
+          {
+            "caption": "Tax Recovery Charges and Service Fees",
+            "amount": "145789.00"
+          }
+        ]
+      },
+      "policy": {
+        "cancellation": "Kami memahami ..."
+      },
+      "guest": {
+        "min_age": 0,
+        "adults_count": 1,
+        "children_count": 0,
+        "children_ages": []
       }
-    ]
+    }},
   }
 }
 ```
@@ -140,7 +140,7 @@ check_in_time | String | Scheduled time of check-in
 check_out_time | String | Scheduled time of check-out
 area_info | String[] | Array of places of interest around the property
 images | Object[] | Array of object for image consisting the URL, thumbnail and caption
-rooms | Object[] | Array of object representing each room available for booking
+rooms | Object | Representing each room available for booking with the room type code as the key, and the whole room body as the value
 
 ### `area_info` Array
 
@@ -156,8 +156,9 @@ Field name | Type | Description
 caption | String | Title of the image
 url | String | URL of the full size of the image
 thumbnail_url | String | A URL for the thumbnail version of the image
+hires_url | String | A URL for the high resolution version of the image
 
-### `rooms` Array
+### `rooms` Object
 
 `rooms` data contains room object with the following fields:
 

@@ -45,6 +45,12 @@ child_age_1 | Integer | Y | Age of the second children
       "sorter": [""],
       "session_id": "some-data",
       "amenities": [""]
+    },
+    "meta": {
+      "arrival_date": "22/04/2017",
+      "departure_date": "23/04/2017",
+      "city": "Jakarta",
+      "sorter": "BUDGET"
     }
   }
 }
@@ -61,6 +67,7 @@ Response body:
 Field name | Type | Description
 ---------- | ----- | ------
 type | String | Type of documents returned, either `HOTEL_SEARCH_RESULTS` or `HOTEL_ALTERNATIVE_LOCATIONS`
+meta | Object | The search parameter being used
 data | Object | The result document
 data.count | Integer | Number of hotels
 data.results | Object[] | Each individual Hotel object
